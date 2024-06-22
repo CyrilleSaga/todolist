@@ -1,15 +1,14 @@
-<script setup lang="ts">
-import HeaderComp from './components/HeaderComp.vue'
-import SideBar from './components/SideBar.vue'
-import TasksComp from './components/TasksComp.vue'
+<script lang="ts" setup>
+import HeaderComp from '@/components/HeaderComp.vue'
 </script>
 
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="max-w-7xl mx-auto">
     <HeaderComp />
-    <div class="flex items-start justify-start gap-2">
-      <SideBar />
-      <TasksComp />
+    <div class="flex items-stretch justify-between">
+      <router-view />
+      <!-- <router-view class="bg-black" name="task" />
+      <router-view name="taskDetail" /> -->
     </div>
   </div>
 </template>

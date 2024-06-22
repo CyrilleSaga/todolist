@@ -62,17 +62,5 @@ const handleCompleted = (value: number) => {
     </div>
 
     <!-- Footer -->
-    <!-- Form to add new task -->
-    <form
-      @submit.prevent="handleSubmit"
-      class="flex items-center flex-col justify-center gap-8 mt-10"
-    >
-      <div class="flex items-center justify-between gap-8">
-        <input v-model="title" type="text" placeholder="Add new task" />
-      </div>
-      <div class="flex items-center justify-end gap-8">
-        <button type="submit" class="bg-green-300 px-4 py-2 rounded-full">Add Task</button>
-      </div>
-    </form>
   </div>
 </template>

@@ -35,6 +35,7 @@ export const useTaskStore = defineStore({
         completed: false
       }
     ],
+    task: null as Task | null,
     taskToDisplay: [] as Task[]
   }),
   actions: {
@@ -48,6 +49,10 @@ export const useTaskStore = defineStore({
 
     completedTasks() {
       this.taskToDisplay = this.tasks.filter((task) => task.completed)
+    },
+
+    findById(id: number) {
+      this.task = this.tasks.find((task) => task.id === id) ?? null
     }
   }
 })

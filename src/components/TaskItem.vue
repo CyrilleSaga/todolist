@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Task } from '@/model/task'
-import { Star, StarIcon } from 'lucide-vue-next'
+import { Star, StarIcon, Eye } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
 
 interface Emits {
   (e: 'update:starred', value: number): void
@@ -17,6 +18,12 @@ const handleStarred = () => {
 const handleCompleted = () => {
   emit('update:completed', props.id)
 }
+
+const router = useRouter()
+
+const handleSeeDetail = () => {
+  router.push({ name: 'taskDetail', params: { id: props.id } })
+}
 </script>
 
 <template>
@@ -32,6 +39,9 @@ const handleCompleted = () => {
     <span @click="handleStarred">
       <Star v-if="props.starred" />
       <StarIcon class="text-yellow-400" v-else />
+    </span>
+    <span @click="handleSeeDetail" :title="props.id.toString()">
+      <Eye />
     </span>
   </div>
 </template>

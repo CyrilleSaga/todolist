@@ -1,35 +1,31 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import NewTask from '@/views/NewTask.vue'
-import HomePage from '@/views/HomePage.vue'
-import TaskDetail from '@/views/TaskDetail.vue'
+
+import LoginPage from '@/views/LoginPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
+import ProfilePage from '@/views/ProfilePage.vue'
+import SettingPage from '@/views/SettingPage.vue'
+import DashboardPage from '@/views/DashboardPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // Home page
-    {
-      path: '/',
-      name: 'home',
-      component: HomePage
-    },
+    // Login page
+    { path: '/', name: 'login', component: LoginPage },
 
+    // Register page
+    { path: '/register', name: 'register', component: RegisterPage },
+
+    // Dashboard page
     {
-      path: '/task',
-      name: 'task',
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardPage,
       children: [
-        // New task page
-        {
-          path: 'new', // localhost:3000/task/new
-          name: 'newTask',
-          component: NewTask
-        },
+        // Profile page
+        { path: 'profile', name: 'profile', component: ProfilePage },
 
-        // Task detail page
-        {
-          path: ':id', // localhost:3000/task/1
-          name: 'taskDetail',
-          component: TaskDetail
-        }
+        // Setting page
+        { path: 'setting', name: 'setting', component: SettingPage }
       ]
     }
   ] as RouteRecordRaw[]

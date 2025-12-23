@@ -1,41 +1,15 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import TaskItem from './TaskItem.vue'
-import type { Task } from '@/model/task'
 import { useTaskStore } from '@/stores/task.store'
-
-const title = ref('')
 
 const taskStore = useTaskStore()
 
-const handleSubmit = () => {
-  const task: Task = {
-    id: taskStore.taskToDisplay.length + 1,
-    title: title.value,
-    date: '2023-01-01',
-    starred: false,
-    completed: false
-  }
-
-  task.id = taskStore.taskToDisplay.length + 1
-  taskStore.taskToDisplay.unshift(task)
+const handleStarred = (id: number) => {
+  taskStore.toggleStarred(id)
 }
 
-const handleStarred = (value: number) => {
-  taskStore.taskToDisplay.map((task) => {
-    if (task.id === value) {
-      task.starred = !task.starred
-    }
-  })
-}
-
-const handleCompleted = (value: number) => {
-  taskStore.taskToDisplay.map((task) => {
-    if (task.id === value) {
-      task.completed = !task.completed
-      console.log(task)
-    }
-  })
+const handleCompleted = (id: number) => {
+  taskStore.toggleCompleted(id)
 }
 </script>
 

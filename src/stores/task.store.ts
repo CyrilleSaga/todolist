@@ -53,6 +53,36 @@ export const useTaskStore = defineStore({
 
     findById(id: number) {
       this.task = this.tasks.find((task) => task.id === id) ?? null
+    },
+
+    addTask(title: string, date?: string) {
+      const newId = this.tasks.length > 0 ? Math.max(...this.tasks.map((t) => t.id)) + 1 : 1
+
+      const newTask: Task = {
+        id: newId,
+        title,
+        date: date || new Date().toISOString().split('T')[0],
+        starred: false,
+        completed: false
+      }
+
+      this.tasks.unshift(newTask)
+      // Update the display to show the new task
+      this.allTasks()
+    },
+
+    toggleStarred(id: number) {
+      const task = this.tasks.find((t) => t.id === id)
+      if (task) {
+        task.starred = !task.starred
+      }
+    },
+
+    toggleCompleted(id: number) {
+      const task = this.tasks.find((t) => t.id === id)
+      if (task) {
+        task.completed = !task.completed
+      }
     }
   }
 })
